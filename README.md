@@ -5,14 +5,14 @@ I will put every subject I have done or do while I'm studying. If someone needed
  
 
 <p align="center" style="font-size:5px"><a href="https://www.must.edu.mn/mn/">Mongolian University of Science and Technology</a> | <a href="http://sict.edu.mn/">School of Information and Communication  Technology</a> | <a href="">Cybersecurity</a></p>
-About me 
-------------------------
-<ul>
-  <li>Student name: <b>Tushigt</b></li>
-  <li>Student code: <b>B221870516</b></li>
-  <li>Student year: <b>Sophomore</b></li>
-  <li>Studing profession <b> Cybersecurity</b></li>
-</ul>
+
+# About me
+
+- **Student name:** Tushigt
+- **Student code:** B221870516
+- **Student year:** Sophomore
+- **Studying profession:** Cybersecurity
+
 
 # Бакалавр оюутан II курс
 
@@ -20,12 +20,11 @@ About me
 
 <p align="center" style="font-size:5px"><a href="https://www.must.edu.mn/mn/">Шинжлэх ухаан технологийн их сургууль</a> | <a href="http://sict.edu.mn/">Мэдээлэл холбооны технологийн их сургууль</a> | <a href="">КИБЕР АЮУЛГҮЙ БАЙДАЛ (Хамтарсан)</a></p>
 
-Миний тухай
-------------------------
-<ul>
-  <li>Оюутан нэр: <b>Түшигт</b></li>
-  <li>Оюутан код: <b>B221870516</b></li>
-  <li>Оюутан курс: <b>II</b></li>
-  <li>Суралцаж буй мэргэжил: <b>КИБЕР АЮУЛГҮЙ БАЙДАЛ</b></li>
-</ul>
+# Миний тухай
+
+- **Оюутан нэр:** Түшигт
+- **Оюутан код:** B221870516
+- **Оюутан курс:** II
+- **Суралцаж буй мэргэжил:** КИБЕР АЮУЛГҮЙ БАЙДАЛ
+
 
