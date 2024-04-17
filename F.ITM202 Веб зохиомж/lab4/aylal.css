@@ -1,0 +1,166 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+}
+
+
+.nav-bar {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.menu a:hover {
+    color: #ff9900;
+}
+
+
+.banner {
+    background-image: url('banner.jpg'); 
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 5rem;
+    text-align: center;
+}
+
+.banner-heading {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.form input[type="text"],
+.form input[type="date"] {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+.form .book {
+    background-color: #ff9900;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.form .book:hover {
+    background-color: #e68a00;
+}
+
+
+.destinations {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+.destination-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+    flex: 1 0 auto; 
+}
+
+.destination-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.destination-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.destination-box p {
+    font-weight: bold;
+}
+
+/* Responsive styles (for smaller screens) */
+@media screen and (max-width: 768px) {
+    .menu li {
+        margin-right: 0.5rem;
+    }
+
+    .banner {
+        padding: 3rem;
+    }
+}
+/* ... (Keep your existing global styles and other sections) ... */
+
+/* Destination Boxes */
+.destinations {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.destination-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.destination-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.destination-box p {
+
+    font-weight: bold;
+}
+
+
+@media screen and (max-width: 768px) {
+   
+}
+

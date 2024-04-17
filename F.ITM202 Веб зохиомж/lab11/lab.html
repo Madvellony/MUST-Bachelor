@@ -1,0 +1,101 @@
+
+<html>
+<head>
+    <title>VS</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0; 
+        }
+        #left, #right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            cursor: pointer;
+        }
+        #left {
+            left: 0;
+            color: #eee;
+        }
+        #right {
+            right: 0;
+            color: #900;
+        }
+        #left div, #right div, #vs {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 50px;
+            line-height: 100px;
+            border-radius: 50px;
+        }
+        #right, #left div {
+            background-color: #900;
+        }
+        #left, #right div {
+            background-color: #eee;
+        }
+        #vs {
+            background-color: #000;
+            color: #fff;
+            box-shadow: 2px 2px 5px #000;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="left" onclick="left_click()"><div></div></div>
+    <div id="right" onclick="right_click()"><div></div></div>
+    <div id="vs">VS</div>
+    <script>
+        var left = 50, right = 50; 
+        var leftDiv = document.getElementById("left");
+        var rightDiv = document.getElementById("right");
+        var vsDiv = document.getElementById("vs");
+
+        function refresh() {
+            leftDiv.style.width = left + "%";
+            rightDiv.style.width = right + "%";
+            leftDiv.firstChild.innerHTML = left;
+            rightDiv.firstChild.innerHTML = right;
+
+            var leftWidth = leftDiv.clientWidth;
+            var rightWidth = rightDiv.clientWidth;
+            var totalWidth = leftWidth + rightWidth;
+            var vsPosition = (leftWidth / totalWidth) * 100;
+            vsDiv.style.left = vsPosition + "%";
+        }
+
+        function left_click() {
+            if (left < 100) {
+                left++;
+                right--;
+                refresh();
+            }
+        }
+
+        function right_click() {
+            if (right < 100) {
+                right++;
+                left--;
+                refresh();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'l' || event.key === 'L') {
+                left_click();
+            } else if (event.key === 'r' || event.key === 'R') {
+                right_click();
+            }
+        });
+    </script>
+
+</body>
+</html>
