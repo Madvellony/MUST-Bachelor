@@ -1,7 +1,7 @@
 # MUST-Bachelor Sophomore
 
 
-I will put every subject I have done or do while I'm studying. If someone needed to feel free to use them.
+I will put every subject I have done or do while I'm studying. If someone needed, feel free to use them.
  
 
 <p align="center" style="font-size:5px"><a href="https://www.must.edu.mn/mn/">Mongolian University of Science and Technology</a> | <a href="http://sict.edu.mn/">School of Information and Communication  Technology</a> | <a href="">Cybersecurity</a></p>
