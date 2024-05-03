@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Кино театрын тасалбар захиалга</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style type="text/css">
+     body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .movie {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    .movie img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+    }
+    .movie-info {
+      flex: 1;
+      padding: 20px;
+    }
+    .movie-info h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .movie-info p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .quantity-input {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .quantity-input label {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    .quantity-input input {
+      width: 50px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .show-time {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .show-time label {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    .show-time select {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .book-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .book-btn:hover {
+      background-color: #0056b3;
+    }
+    .book-btn-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+    .total-order-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .total-order-btn:hover {
+      background-color: #0056b3;
+    }
+    .seat-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .seat {
+      width: 30px;
+      height: 30px;
+      background-color: #ccc;
+      margin: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .seat.selected {
+      background-color: #007bff;
+      color: white;
+    }
+  </style>
+  <script>
+var seatLayout = [
+  ['A1', 'A2', 'A3', 'A4', 'A5'],
+  ['B1', 'B2', 'B3', 'B4', 'B5']
+];
+
+var selectedSeats = [];
+
+function toggleSeat(element) {
+  $(element).toggleClass("selected");
+  var seatId = $(element).text();
+  var index = selectedSeats.indexOf(seatId);
+  if (index === -1) {
+    selectedSeats.push(seatId);
+  } else {
+    selectedSeats.splice(index, 1);
+  }
+  updateSelectedSeats();
+}
+
+function updateSelectedSeats() {
+  $(".selected-seats").text(selectedSeats.join(", "));
+}
+
+$(document).ready(function() {
+  $(".book-btn").click(function() {
+    var movieTitle = $(this).closest(".movie").find(".title").text();
+    var ticketQuantity = parseInt($(this).closest(".movie").find(".quantity").val());
+    var showTime = $(this).closest(".movie").find(".show-time-select").val();
+    var selectedSeatCount = $(this).closest(".movie").find(".seat.selected").length;
+
+    if (!isNaN(ticketQuantity) && ticketQuantity > 0 && selectedSeatCount > 0) {
+      alert("Та " + movieTitle + " киноны " + showTime + "-д " + selectedSeatCount + " суудалтайгаар " + ticketQuantity + " тасалбар захиаллаа.");
+    } else {
+      alert("Та тасалбарын тоо болон суудлыг сонгоогүй байна.");
+    }
+  });
+
+  $(".total-order-btn").click(function() {
+    var totalTickets = 0;
+    var totalSeats = 0;
+    var movieTickets = {};
+    var movieSeats = {};
+    var movieTimes = {};
+
+    $(".quantity").each(function() {
+      var movieName = $(this).closest(".movie").find(".title").text();
+      var showTime = $(this).closest(".movie").find(".show-time-select").val();
+      var ticketCount = parseInt($(this).val());
+      var selectedSeatCount = $(this).closest(".movie").find(".seat.selected").length;
+      if (!isNaN(ticketCount) && ticketCount > 0 && selectedSeatCount > 0) {
+        totalTickets += ticketCount;
+        totalSeats += selectedSeatCount;
+        movieTickets[movieName] = ticketCount;
+        movieSeats[movieName] = selectedSeatCount;
+        movieTimes[movieName] = showTime;
+      }
+    });
+
+    var message = "Та нийт " + totalTickets + " тасалбар, нийт " + totalSeats + " суудалтайгаар захиаллаа, үүнээс:\n";
+    for (var movie in movieTickets) {
+      var selectedSeats = $(`.movie:has(.title:contains("${movie}")) .seat.selected`).map(function() {
+        return $(this).text();
+      }).get().join(", ");
+      message += "- " + movie + " киноны " + movieTimes[movie] + "-д " + selectedSeats + " суудалтай " + movieTickets[movie] + " тасалбар захиаллаа\n";
+    }
+    alert(message);
+  });
+});
+</script>
+</head>
+<body>
+  <div class="container">
+    <h1>Кино театрын тасалбар захиалга</h1>
+    
+    <div class="movie">
+      <img src="movie1.jpeg" alt="Movie 1">
+      <div class="movie-info">
+        <h2 class="title">Despiceable Me 4</h2>
+        <p>Гру, Люси болон тэдний охид болох Марго, Эдит, Агнес нар аавыгаа ядаргаатай болгохыг зорьж буй Гру гэр бүлийн шинэ гишүүн болох бага Гру-г угтан авлаа. Гру Максим Ле Мал болон түүний найз охин Валентинагийн шинэ дайсантай тулгарах тул гэр бүл нь зугтахаас өөр аргагүй болно.</p>
+        <div class="quantity-input">
+          <label for="quantity1">Тасалбарын тоо:</label>
+          <input type="number" id="quantity1" class="quantity" placeholder="Тасалбарын тоог оруулна уу">
+        </div>
+        <div class="show-time">
+          <label for="show-time1">Үзүүлэх цаг:</label>
+          <select id="show-time1" class="show-time-select">
+            <option value="10:00">10:00</option>
+            <option value="13:00">13:00</option>
+            <option value="16:00">16:00</option>
+            <option value="19:00">19:00</option>
+          </select>
+        </div>
+        <div class="seat-container">
+          <div class="seat" onclick="toggleSeat(this)">A1</div>
+          <div class="seat" onclick="toggleSeat(this)">A2</div>
+          <div class="seat" onclick="toggleSeat(this)">A3</div>
+          <div class="seat" onclick="toggleSeat(this)">A4</div>
+          <div class="seat" onclick="toggleSeat(this)">A5</div>
+          <div class="seat" onclick="toggleSeat(this)">B1</div>
+          <div class="seat" onclick="toggleSeat(this)">B2</div>
+          <div class="seat" onclick="toggleSeat(this)">B3</div>
+          <div class="seat" onclick="toggleSeat(this)">B4</div>
+          <div class="seat" onclick="toggleSeat(this)">B5</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="movie">
+      <img src="movie2.jpeg" alt="Movie 2">
+      <div class="movie-info">
+        <h2 class="title">Dune Part 2</h2>
+        <p>Пол Атрейдес түүний гэр бүлийг устгасан хуйвалдагчдын эсрэг өшөө авахын тулд Чани болон Фремен нартай нэгддэг. Амьдралынхаа хайр ба орчлон ертөнцийн хувь тавилан хоёрын хоорондох сонголтын өмнө тэрээр зөвхөн өөрийн таамаглаж чадах аймшигтай ирээдүйг урьдчилан сэргийлэх ёстой.</p>
+        <div class="quantity-input">
+          <label for="quantity2">Тасалбарын тоо:</label>
+          <input type="number" id="quantity2" class="quantity" placeholder="Тасалбарын тоог оруулна уу">
+        </div>
+        <div class="show-time">
+            <label for="show-time1">Үзлэх цаг:</label>
+            <select id="show-time1" class="show-time-select">
+              <option value="10:00">10:00</option>
+              <option value="13:00">13:00</option>
+              <option value="16:00">16:00</option>
+              <option value="19:00">19:00</option>
+            </select>
+        </div>
+        <div class="seat-container">
+          <div class="seat" onclick="toggleSeat(this)">A1</div>
+          <div class="seat" onclick="toggleSeat(this)">A2</div>
+          <div class="seat" onclick="toggleSeat(this)">A3</div>
+          <div class="seat" onclick="toggleSeat(this)">A4</div>
+          <div class="seat" onclick="toggleSeat(this)">A5</div>
+          <div class="seat" onclick="toggleSeat(this)">B1</div>
+          <div class="seat" onclick="toggleSeat(this)">B2</div>
+          <div class="seat" onclick="toggleSeat(this)">B3</div>
+          <div class="seat" onclick="toggleSeat(this)">B4</div>
+          <div class="seat" onclick="toggleSeat(this)">B5</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="movie">
+      <img src="movie3.webp" alt="Movie 3">
+      <div class="movie-info">
+        <h2 class="title">Godzilla x Kong:The New Empire</h2>
+        <p>Годзилла, Конг хоёр тэсрэлттэй тулааныхаа дараа манай ертөнцөд нуугдаж буй асар том илрээгүй аюул заналхийллийн эсрэг дахин нэгдэж, өөрсдийн болон бидний оршин тогтнолыг сорьсон байх ёстой.</p>
+        <div class="quantity-input">
+          <label for="quantity3">Тасалбарын тоо:</label>
+          <input type="number" id="quantity3" class="quantity" placeholder="Тасалбарын тоог оруулна уу">
+        </div>
+        <div class="show-time">
+            <label for="show-time1">Үзэх цаг:</label>
+            <select id="show-time1" class="show-time-select">
+              <option value="10:00">10:00</option>
+              <option value="13:00">13:00</option>
+              <option value="16:00">16:00</option>
+              <option value="19:00">19:00</option>
+            </select>
+        </div>
+        <div class="seat-container">
+          <div class="seat" onclick="toggleSeat(this)">A1</div>
+          <div class="seat" onclick="toggleSeat(this)">A2</div>
+          <div class="seat" onclick="toggleSeat(this)">A3</div>
+          <div class="seat" onclick="toggleSeat(this)">A4</div>
+          <div class="seat" onclick="toggleSeat(this)">A5</div>
+          <div class="seat" onclick="toggleSeat(this)">B1</div>
+          <div class="seat" onclick="toggleSeat(this)">B2</div>
+          <div class="seat" onclick="toggleSeat(this)">B3</div>
+          <div class="seat" onclick="toggleSeat(this)">B4</div>
+          <div class="seat" onclick="toggleSeat(this)">B5</div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h1>Кино театрын тасалбар захиалга</h1>
+
+        
+        <div class="book-btn-container">
+          <button class="total-order-btn">
+            <i class="fas fa-receipt"></i> Нийт захиалга
+          </button>
+        </div>
+      </div>
+      
+</body>
+</html>
