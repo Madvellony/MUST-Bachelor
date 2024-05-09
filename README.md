@@ -1,7 +1,7 @@
 # MUST-Bachelor Sophomore
 
 
-I will put every subject I have done or do while I'm studying. If someone needed, feel free to use them.
+I will put every subject I have done or do while I'm studying. If someone needs them, feel free to use them.
  
 
 <p align="center" style="font-size:5px"><a href="https://www.must.edu.mn/mn/">Mongolian University of Science and Technology</a> | <a href="http://sict.edu.mn/">School of Information and Communication  Technology</a> | <a href="">Cybersecurity</a></p>
@@ -12,6 +12,11 @@ I will put every subject I have done or do while I'm studying. If someone needed
 - **Student code:** B221870516
 - **Student year:** Sophomore
 - **Studying profession:** Cybersecurity
+
+- **Subject:** F.ITM202 Web Design
+- **Subject:** F.NSA202 Operating Systems
+- **Subject:** F.NSA233 Machine level programming
+- **Subject:** F.NSM301 Network Infrastructure
 
 
 # Бакалавр оюутан II курс
@@ -26,5 +31,12 @@ I will put every subject I have done or do while I'm studying. If someone needed
 - **Оюутан код:** B221870516
 - **Оюутан курс:** II
 - **Суралцаж буй мэргэжил:** КИБЕР АЮУЛГҮЙ БАЙДАЛ
+
+- **Xичээлүүд:** F.ITM202 Веб зохиомж
+- **Xичээлүүд:** F.NSA202 Үйлдлийн систем
+- **Xичээлүүд:** F.NSA233 Доод түвшиний программчлал
+- **Xичээлүүд:** F.NSM301 Сүлжээний дэд бүтэц
+
+
 
 
