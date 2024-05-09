@@ -13,10 +13,12 @@ I will put every subject I have done or do while I'm studying. If someone needs 
 - **Student year:** Sophomore
 - **Studying profession:** Cybersecurity
 
+
+
 - **Subject:** F.ITM202 Web Design
-- **Subject:** F.NSA202 Operating Systems
-- **Subject:** F.NSA233 Machine level programming
-- **Subject:** F.NSM301 Network Infrastructure
+               F.NSA202 Operating Systems
+               F.NSA233 Machine-level programming
+               F.NSM301 Network Infrastructure
 
 
 # Бакалавр оюутан II курс
@@ -33,9 +35,9 @@ I will put every subject I have done or do while I'm studying. If someone needs 
 - **Суралцаж буй мэргэжил:** КИБЕР АЮУЛГҮЙ БАЙДАЛ
 
 - **Xичээлүүд:** F.ITM202 Веб зохиомж
-- **Xичээлүүд:** F.NSA202 Үйлдлийн систем
-- **Xичээлүүд:** F.NSA233 Доод түвшиний программчлал
-- **Xичээлүүд:** F.NSM301 Сүлжээний дэд бүтэц
+                 F.NSA202 Үйлдлийн систем
+                 F.NSA233 Доод түвшиний программчлал
+                 F.NSM301 Сүлжээний дэд бүтэц
 
 
 
