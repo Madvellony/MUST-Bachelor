@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Хотын үзвэрүүд</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="map-container">
+        <div class="attraction-marker zoo" data-attraction="zoo">
+            <img src="marker.png" alt="Zoo Marker">
+            <div class="attraction-info" style="display: none;">
+                <div class="animated-images">
+                    <img src="giphy.gif" alt="Zoo Icon" class="zoo-icon" style="display: none;">
+                </div>
+                <h2 class="attraction-name"></h2>
+                <p class="attraction-schedule"></p>
+                <p class="attraction-timeline"></p>
+            </div>
+        </div>
+        <div class="attraction-marker theater" data-attraction="theater">
+            <img src="marker.png" alt="Theater Marker">
+            <div class="attraction-info" style="display: none;">
+                <div class="animated-images">
+                    <img src="giphy2.gif" alt="Theater Icon" class="theater-icon" style="display: none;">
+                </div>
+                <h2 class="attraction-name"></h2>
+                <p class="attraction-schedule"></p>
+                <p class="attraction-timeline"></p>
+            </div>
+        </div>
+        <div class="attraction-marker museum" data-attraction="museum">
+            <img src="marker.png" alt="Museum Marker">
+            <div class="attraction-info" style="display: none;">
+                <div class="animated-images">
+                    <img src="giphy3.gif" alt="Museum Icon" class="museum-icon" style="display: none;">
+                </div>
+                <h2 class="attraction-name"></h2>
+                <p class="attraction-schedule"></p>
+                <p class="attraction-timeline"></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
