@@ -1,117 +1,55 @@
-.data
-prompt: .asciiz "Enter a number: "
-result: .asciiz "Sorted numbers: "
-
-.text
-.align 2  # Align instructions to word boundaries
-
-# Main program entry point
+.globl main
 main:
-    # Print prompt for user input
-    li $v0, 4
-    la $a0, prompt
+
+    la $a0, digits    
+    li $a1, 10        
+    jal sorting       
+    la $t1, digits    
+    li $t0, 0         
+
+print:
+    beq $t0, $a1, exit    
+    lw $a0, 0($t1)        
+    li $v0, 1            
     syscall
-    
-    # Initialize memory location to store input numbers
-    la $a0, numbers
-    li $t0, 0    # Counter for number of inputs
-input_loop:
-    # Read an integer from the console
-    li $v0, 5
-    syscall
-    
-    # Store the input number into memory
-    sw $v0, ($a0)
-    
-    # Move to the next memory location
-    addi $a0, $a0, 4
-    
-    # Increment the counter
-    addi $t0, $t0, 1
-    
-    # Check if 10 numbers have been inputted
-    bne $t0, 10, input_loop
-    
-    # Sort the numbers
-    la $a0, numbers
-    jal bubble_sort
-    
-    # Print the sorted numbers
-    li $v0, 4
-    la $a0, result
-    syscall
-    
-    la $a0, numbers
-    li $t0, 0
-print_loop:
-    lw $a1, ($a0)
-    li $v0, 1
-    move $a0, $a1
-    syscall
-    
-    li $v0, 4
-    la $a0, space
-    syscall
-    
-    addi $a0, $a0, 4
-    addi $t0, $t0, 1
-    blt $t0, 10, print_loop
+    li $v0, 4             
+    la $a0, line          
+    syscall 
+    addi $t1, $t1, 4     
+    addi $t0, $t0, 1     
+    j print              
 
 exit:
-    li $v0, 10
+    li $v0, 10           
     syscall
 
-# Bubble sort subroutine
-# Input: $a0 - address of the array of numbers
-bubble_sort:
-    li $t6, 10              # Number of elements to sort
-    sub $t6, $t6, 1         # Max index
-    li $t7, 1               # Loop control variable (0 if no swaps made)
+sorting:
+    li $t2, 1             
+    sub $t3, $a1, 1       
+loop2:
+    beqz $t2, loop2_end   
+    move $t4, $a0         
+    li $t2, 0             
+    li $t0, 0            
 
-outer_loop:
-    li $t0, 0               # Initialize index to 0
-    li $t7, 0               # Reset swap flag
+loop1:
+    bge $t0, $t3, loop2  #
+    lw $t5, 0($t4)        
+    lw $t6, 4($t4)
+    blt $t5, $t6, do_change  
+    j skip_change
 
-inner_loop:
-    beq $t0, $t6, end_outer # Exit loop if index equals max index
-
-    # Calculate memory addresses for the current and next numbers
-    add $t1, $a0, $t0       # Address of current number
-    add $t2, $t1, 4         # Address of next number
-
-    # Load the current and next numbers into registers
-    lw $s0, 0($t1)          # Load current number into $s0
-    lw $s1, 0($t2)          # Load next number into $s1
-
-    # Compare the current and next numbers
-    bgt $s0, $s1, swap      # Swap if current number is greater than next number
-
-    # If no swap was made, set flag to 1
-    j no_swap_check
-
-swap:
-    # Swap the current and next numbers
-    sw $s1, 0($t1)          # Store next number at the current location
-    sw $s0, 0($t2)          # Store current number at the next location
-
-    # Set flag to 1 indicating a swap was made
-    li $t7, 1
-
-no_swap_check:
-    # Increment index
-    addi $t0, $t0, 4
-
-    # Continue inner loop
-    j inner_loop
-
-end_outer:
-    # If a swap was made, repeat outer loop
-    bne $t7, 0, outer_loop
-
-    jr $ra                 # Return to calling routine
-
+do_change:
+    sw $t6, 0($t4)        
+    sw $t5, 4($t4)
+    li $t2, 1             
+skip_change:
+    addi $t4, $t4, 4      
+    addi $t0, $t0, 1      
+    j loop1               
+loop2_end:
+    jr $ra               
+    
 .data
-numbers: .space 40
-prompt: .asciiz "Enter a number: "
-result: .asciiz "Sorted numbers: "
-space: .asciiz " "
+digits: .word  14, 52, 2, 21, 77, 5, 8, 9, 3, 0  # Элементүүд
+line: .asciiz "\n"                              
